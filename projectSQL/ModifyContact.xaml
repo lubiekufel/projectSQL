@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="projectSQL.ModifyContact"
+             Title="ModifyContact">
+    <VerticalStackLayout>
+        <Label 
+            Text="Modyfikacja kontaktu"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Grid RowDefinitions="*, *, *" ColumnDefinitions="*, *" Margin="30">
+            <Label Grid.Column="0" Grid.Row="0" Text="Imię:"></Label>
+            <Entry x:Name="nameEntry" Grid.Column="1" Grid.Row="0" Text="{Binding Name}"></Entry>
+            <Label Grid.Column="0" Grid.Row="1" Text="Nazwisko:"></Label>
+            <Entry x:Name="surnameEntry" Grid.Column="1" Grid.Row="1" Text="{Binding Surname}"></Entry>
+            <Label Grid.Column="0" Grid.Row="2" Text="Numer telefonu:"></Label>
+            <Entry x:Name="phoneEntry" Grid.Column="1" Grid.Row="2" Text="{Binding Phone}"></Entry>
+        </Grid>
+        <Grid RowDefinitions="auto" ColumnDefinitions="*" Margin="30">
+            <Button Clicked="Confirm_Clicked" Grid.Column="0" Grid.Row="0" Text="Potwierdź"></Button>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="projectSQL.InfoPage"
+             Title="InfoPage">
+    <VerticalStackLayout>
+        <Label 
+            Margin="30"
+            Text="Aplikacja jest prostą książką kontaktów stworzoną w technologii .NET MAUI z wykorzystaniem lokalnej bazy danych SQLite. Umożliwia dodawanie, edytowanie, usuwanie oraz wyszukiwanie kontaktów po imieniu, nazwisku lub numerze telefonu. Kontakty wyświetlane są z podziałem na strony, co ułatwia ich przeglądanie. Wszystkie dane przechowywane są lokalnie na urządzeniu w pliku contacts.db. Projekt został stworzony w celach edukacyjnych jako demonstracja użycia .NET MAUI i SQLite do tworzenia aplikacji wieloplatformowych z prostym interfejsem użytkownika."
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button Text="Przejdź do aplikacji" Clicked="Button_Clicked"></Button>
+    </VerticalStackLayout>
+</ContentPage>
