@@ -83,7 +83,7 @@ namespace projectSQL.MVVM
         public int page = 1;
         public int pageMax = 999;
         public List<int> invalidVariables = new List<int>();
-        private const int limit = 5;
+        public int limit = 5;
         private ObservableCollection<Contact> _contacts;
         public ObservableCollection<Contact> contacts
         {
@@ -96,35 +96,56 @@ namespace projectSQL.MVVM
         }
         public Model()
         {
-            connection = new SqliteConnection("Data Source=\"C:\\Users\\lenovo\\Desktop\\projectSQL\\contacts.db\"");
+            string dbFileName = "contacts.db";
+            string dbPath = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            "contacts.db"
+            );
+            connection = new SqliteConnection($"Data Source={dbPath}");
             connection.Open();
+
+            InitializeDatabase();
             SortContacts();
-
-            //contacts = new ObservableCollection<Contact>
-            //{
-            //    new Contact("John", "Doe", "1234567890"),
-            //    new Contact("Jane", "Smith", "0987654321"),
-            //    new Contact("Alice", "Johnson", "5555555555"),
-            //    new Contact("Bob", "Brown", "1112223333"),
-            //    new Contact("Michael", "Davis", "2223334444"),
-            //    new Contact("Emily", "Wilson", "3334445555"),
-            //    new Contact("David", "Taylor", "4445556666"),
-            //    new Contact("Sarah", "Anderson", "5556667777"),
-            //    new Contact("James", "Thomas", "6667778888"),
-            //    new Contact("Olivia", "Martinez", "7778889999"),
-            //    new Contact("Daniel", "Harris", "8889990000"),
-            //    new Contact("Sophia", "Clark", "9990001111"),
-            //    new Contact("William", "Lewis", "1113335555"),
-            //    new Contact("Ava", "Walker", "2224446666"),
-            //    new Contact("Ethan", "Hall", "3335557777"),
-            //    new Contact("Mia", "Allen", "4446668888"),
-            //    new Contact("Alexander", "Young", "5557779999"),
-            //    new Contact("Isabella", "Hernandez", "6668880000"),
-            //    new Contact("Jacob", "King", "7779991111"),
-            //    new Contact("Charlotte", "Wright", "8880002222")
-
-            //};
         }
+        private void InitializeDatabase()
+        {
+            using var cmd = connection.CreateCommand();
+            cmd.CommandText =
+            @"
+        CREATE TABLE IF NOT EXISTS contacts (
+	        ""id""	INTEGER,
+	        ""name""	TEXT,
+	        ""surname""	TEXT,
+	        ""phone""	TEXT,
+	        PRIMARY KEY(""id"" AUTOINCREMENT)
+        )
+        ";
+            cmd.ExecuteNonQuery();
+        }
+        //contacts = new ObservableCollection<Contact>
+        //{
+        //    new Contact("John", "Doe", "1234567890"),
+        //    new Contact("Jane", "Smith", "0987654321"),
+        //    new Contact("Alice", "Johnson", "5555555555"),
+        //    new Contact("Bob", "Brown", "1112223333"),
+        //    new Contact("Michael", "Davis", "2223334444"),
+        //    new Contact("Emily", "Wilson", "3334445555"),
+        //    new Contact("David", "Taylor", "4445556666"),
+        //    new Contact("Sarah", "Anderson", "5556667777"),
+        //    new Contact("James", "Thomas", "6667778888"),
+        //    new Contact("Olivia", "Martinez", "7778889999"),
+        //    new Contact("Daniel", "Harris", "8889990000"),
+        //    new Contact("Sophia", "Clark", "9990001111"),
+        //    new Contact("William", "Lewis", "1113335555"),
+        //    new Contact("Ava", "Walker", "2224446666"),
+        //    new Contact("Ethan", "Hall", "3335557777"),
+        //    new Contact("Mia", "Allen", "4446668888"),
+        //    new Contact("Alexander", "Young", "5557779999"),
+        //    new Contact("Isabella", "Hernandez", "6668880000"),
+        //    new Contact("Jacob", "King", "7779991111"),
+        //    new Contact("Charlotte", "Wright", "8880002222")
+
+        //};
         //public void SortContacts()
         //{
         //    var command = connection.CreateCommand();

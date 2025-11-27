@@ -54,7 +54,11 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+		
+		<MauiAsset Include="Resources\Raw\contacts.db" />
 	</ItemGroup>
+	<!-- <ItemGroup> -->
+	<!-- </ItemGroup> -->
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.10" />
@@ -62,7 +66,6 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 	</ItemGroup>
-
 	<ItemGroup>
 	  <MauiXaml Update="AddContact.xaml">
 	    <Generator>MSBuild:Compile</Generator>
@@ -76,6 +79,10 @@
 	  <MauiXaml Update="ModifyContact.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="NewFolder\" />
 	</ItemGroup>
 
 </Project>

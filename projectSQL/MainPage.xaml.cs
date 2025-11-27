@@ -8,7 +8,13 @@ namespace projectSQL
         public MainPage()
         {
             InitializeComponent();
+#if ANDROID
+            model.limit = 15;
+#else
+            this.ToolbarItems.Clear();
+#endif
             BindingContext = model;
+
         }
 
         private async void Modify_Clicked(object sender, EventArgs e)
